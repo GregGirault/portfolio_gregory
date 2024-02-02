@@ -1,24 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Fonction pour fermer le message de succès
-    function closeSuccessMessage() {
-        const successMsg = document.querySelector(".bg-green-500");
-        if (successMsg) {
-            successMsg.classList.add("hidden");
-        }
+    // Fonction pour fermer le message de succès et ajouter une animation de rotation
+    function closeSuccessMessage(event) {
+        const closeButton = event.target;
+        closeButton.classList.add("rotate-180"); // Ajoute une rotation de 180 degrés
+
+        // Attendre la fin de l'animation avant de cacher le message
+        closeButton.addEventListener("transitionend", function () {
+            closeButton.parentElement.classList.add("hidden");
+        }, { once: true }); // L'option { once: true } assure que l'écouteur est supprimé après exécution
     }
+
+    // Ajout d'un gestionnaire d'événements aux boutons de fermeture des messages de succès
+    document.querySelectorAll(".close").forEach(btn => {
+        btn.addEventListener("click", closeSuccessMessage);
+    });
+});
 
     // Fonction pour gérer la suppression du projet avec confirmation
     function handleDeleteProject(e) {
         if (!confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) {
             e.preventDefault();
         }
-    }
-
-    // Fonction pour fermer automatiquement le message de succès
-    function autoCloseSuccessMessage() {
-        setTimeout(() => {
-            closeSuccessMessage();
-        }, 5000); // Fermer après 5 secondes
     }
 
     // Ajout d'un gestionnaire d'événements aux boutons de fermeture des messages de succès
@@ -35,7 +37,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fermer automatiquement le message de succès s'il existe
     autoCloseSuccessMessage();
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+        const successMessage = document.querySelector('.success-message');
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+    }, 8000); 
 });
+
 
 
 document.addEventListener("DOMContentLoaded", function () {

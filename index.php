@@ -4,9 +4,11 @@ require_once("connect.php");
 
 
 // Gestion des messages de succès
-$successMsg = $_SESSION["success_message"] ?? '';
-unset($_SESSION["success_message"]); // Nettoyage du message de succès après l'avoir lu
-
+if (isset($_SESSION["success_message"])) {
+    echo "<div class='success-message'>" . $_SESSION["success_message"] . "</div>";
+    // Effacer le message après l'affichage
+    unset($_SESSION["success_message"]);
+}
 
 // Vérification si l'utilisateur est connecté et est un admin
 if (!isset($_SESSION["username"]) || $_SESSION["role"] !== 'Admin') {
@@ -117,17 +119,23 @@ require_once "close.php";
     </head>
     <body class="bg-gray-100 font-poppins">
         <div class="container mx-auto p-8">
-            <?php if (!empty($successMsg)): ?>
-                <div class="bg-green-500 text-white font-bold rounded px-4 py-3 relative" role="alert">
-                    <span class="close absolute top-0 right-0 px-3 py-2 cursor-pointer" onclick="closeSuccessMessage()">&times;</span>
-                    <?= $successMsg ?>
+
+            <?php if (isset($_SESSION["success_add_message"])): ?>
+                <div class="bg-green-500 text-white font-bold rounded px-4 py-3 mb-4 relative" role="alert">
+                    <button class="close absolute top-0 right-0 transform hover:rotate-180 transition-transform duration-500 mt-2 mr-2">&times;</button>
+                    <?= $_SESSION["success_add_message"]; ?>
+                    <?php unset($_SESSION["success_add_message"]); ?>
                 </div>
             <?php endif; ?>
 
-
-            <?php if (!empty($errorMsg)): ?>
-                <div class="bg-red-500 text-white font-bold rounded px-4 py-3" role="alert"><?= $errorMsg ?></div>
+            <?php if (isset($_SESSION["success_delete_message"])): ?>
+                <div class="bg-green-500 text-white font-bold rounded px-4 py-3 mb-4 relative" role="alert">
+                    <button class="close absolute top-0 right-0 transform hover:rotate-180 transition-transform duration-500 mt-2 mr-2">&times;</button>
+                    <?= $_SESSION["success_delete_message"]; ?>
+                    <?php unset($_SESSION["success_delete_message"]); ?>
+                </div>
             <?php endif; ?>
+
 
             <h1 class="text-2xl font-semibold mb-4 text-center">Historique des ajouts</h1>
             <table class="min-w-full leading-normal">

@@ -28,11 +28,11 @@ if ($_GET && isset($_GET['id'])) {
         $result = $query->execute();
 
         if ($result) {
-            $_SESSION["toast_message"] = "Projet supprimé avec succès!";
-            $_SESSION["toast_type"] = "success";
+            $_SESSION["success_delete_message"] = "Projet supprimé avec succès!";
         } else {
             $_SESSION["toast_error"] = "Erreur lors de la suppression du projet.";
         }
+
     } else {
         $_SESSION["toast_error"] = "Projet non trouvé.";
     }

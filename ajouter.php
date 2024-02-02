@@ -3,7 +3,7 @@ session_start();
 require_once("connect.php");
 
 $error = '';
-$_SESSION["success_message"] = "Projet ajouté avec succès.";
+
 
 
 // Générer et stocker le token CSRF si nécessaire
@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt = $db->prepare($sql);
                 $stmt->execute([':titre' => $titre, ':description' => $description, ':categorie_id' => $categorieId, ':image' => $new_image_name]);
 
-                header("Location: index.php?success=ajout");
+                $_SESSION["success_add_message"] = "Projet ajouté avec succès.";
+                header("Location: index.php");
                 exit();
-
             } else {
                 $error = "Erreur lors du téléchargement de l'image.";
             }
