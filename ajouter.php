@@ -94,7 +94,7 @@ require_once("close.php");
                 </div>
                 <div class="flex items-center justify-between">
                     <input type="submit" value="Ajouter" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    <a href="index.php" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Retour</a>
+                    <a href="index.php" class="inline-block align-baseline font-bold text-sm text-zinc-500 hover:text-zinc-700">Retour</a>
                 </div>
             </form>
         </div>

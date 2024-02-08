@@ -2,17 +2,10 @@
 session_start();
 require_once("connect.php");
 
-
-// Gestion des messages de succès
-if (isset($_SESSION["success_message"])) {
-    echo "<div class='success-message'>" . $_SESSION["success_message"] . "</div>";
-    // Effacer le message après l'affichage
-    unset($_SESSION["success_message"]);
-}
+var_dump($_SESSION);
 
 // Vérification si l'utilisateur est connecté et est un admin
 if (!isset($_SESSION["username"]) || $_SESSION["role"] !== 'Admin') {
-    // Si l'utilisateur n'est pas connecté ou n'est pas un admin, rediriger vers la page de login
     header("Location: login.php");
     exit();
 }
@@ -20,28 +13,36 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== 'Admin') {
 // Traitement du formulaire d'ajout ou de mise à jour de projet
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Vérification de la présence et du remplissage des champs nécessaires
-    if (
-        isset($_POST["titre"], $_POST["description"], $_POST["image"]) &&
-        !empty($_POST["titre"]) && !empty($_POST["description"]) && !empty($_POST["image"])
-    ) {
+    $titre = isset($_POST["titre"]) ? strip_tags($_POST["titre"]) : '';
+    $description = isset($_POST["description"]) ? strip_tags($_POST["description"]) : '';
+    $categorieId = isset($_POST["categorie_id"]) ? (int) $_POST["categorie_id"] : 1;
+    $archiver = isset($_POST["archiver"]) ? 1 : 0;
+    $image = isset($_POST["image"]) ? strip_tags($_POST["image"]) : '';
 
-        // Nettoyage des données reçues
-        $titre = strip_tags($_POST["titre"]);
-        $description = strip_tags($_POST["description"]);
-        $image = strip_tags($_POST["image"]);
-        $archiver = isset($_POST["archiver"]) ? 1 : 0; // Gestion de la case à cocher 'archiver'
-        $categorieId = $_POST["categorie_id"] ?? 1; // ID de catégorie par défaut à 1 si non spécifié
+    if (!empty($titre) && !empty($description) && !empty($image)) {
+        // Gestion de l'image si une nouvelle a été téléchargée
+        if (!empty($_FILES["image"]["name"])) {
+            $image = $_FILES["image"]["name"];
+            $image_temp = $_FILES["image"]["tmp_name"];
+            $image_destination = './image/' . basename($image); // Sécurisation du nom de fichier
 
-        // Si l'ID du projet est présent, c'est une mise à jour, sinon c'est un ajout
+            if (!file_exists('./image/')) {
+                mkdir('./image/', 0777, true);
+            }
+
+            if (!move_uploaded_file($image_temp, $image_destination)) {
+                $_SESSION["toast_message"] = "Erreur lors du téléchargement de l'image.";
+                header("Location: modifier.php?id=" . $id);
+                exit();
+            }
+        }
+
+        // Préparation de la requête SQL
         if (isset($_POST["id"]) && !empty($_POST["id"])) {
-            // Mise à jour d'un projet existant
             $id = $_POST["id"];
-            $sql = "UPDATE projets SET titre = :titre, description = :description, image = :image, archiver = :archiver, date_modification = NOW() WHERE ID = :id";
-            $message = "Projet mis à jour avec succès.";
+            $sql = "UPDATE projets SET titre = :titre, description = :description, image = :image, archiver = :archiver, categorie_id = :categorie_id, date_modification = NOW() WHERE ID = :id";
         } else {
-            // Ajout d'un nouveau projet
-            $sql = "INSERT INTO projets (titre, description, image, archiver, date_creation, categorie_id) VALUES (:titre, :description, :image, :archiver, NOW(), :categorie_id)";
-            $message = "Projet ajouté avec succès.";
+            $sql = "INSERT INTO projets (titre, description, image, archiver, categorie_id, date_creation) VALUES (:titre, :description, :image, :archiver, :categorie_id, NOW())";
         }
 
         $query = $db->prepare($sql);
@@ -50,20 +51,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $query->bindValue(":image", $image, PDO::PARAM_STR);
         $query->bindValue(":archiver", $archiver, PDO::PARAM_INT);
         $query->bindValue(":categorie_id", $categorieId, PDO::PARAM_INT);
-
         if (isset($id)) {
-            // Bind de l'ID pour la mise à jour
             $query->bindValue(":id", $id, PDO::PARAM_INT);
         }
 
-        $query->execute();
-
-        // Message de succès à afficher sur la page de redirection
-        $_SESSION["success_message"] = $message;
+        // Exécution de la requête
+        if ($query->execute()) {
+            $_SESSION["toast_message"] = isset($id) ? "Le projet a été mis à jour avec succès." : "Le projet a été ajouté avec succès.";
+        } else {
+            $_SESSION["toast_message"] = "Une erreur est survenue lors de l'opération sur le projet.";
+        }
         header("Location: index.php");
         exit();
     } else {
-        // Redirection en cas de champs manquants
+        $_SESSION["toast_message"] = "Veuillez remplir tous les champs requis.";
         header("Location: ajouter.php");
         exit();
     }
@@ -134,6 +135,16 @@ require_once "close.php";
                     <?= $_SESSION["success_delete_message"]; ?>
                     <?php unset($_SESSION["success_delete_message"]); ?>
                 </div>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION["toast_message"])): ?>
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+                    <p><?= $_SESSION["toast_message"] ?></p>
+                </div>
+                <?php
+                unset($_SESSION["toast_message"]);
+                unset($_SESSION["toast_type"]); 
+                ?>
             <?php endif; ?>
 
 

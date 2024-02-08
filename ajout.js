@@ -16,27 +16,34 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-    // Fonction pour gérer la suppression du projet avec confirmation
-    function handleDeleteProject(e) {
-        if (!confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) {
-            e.preventDefault();
-        }
+// Fonction pour fermer automatiquement le message de succès
+function autoCloseSuccessMessage() {
+    setTimeout(() => {
+        closeSuccessMessage();
+    }, 5000); // Fermer après 5 secondes
+}
+
+// Fonction pour gérer la suppression du projet avec confirmation
+function handleDeleteProject(e) {
+    if (!confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) {
+        e.preventDefault();
     }
+}
 
-    // Ajout d'un gestionnaire d'événements aux boutons de fermeture des messages de succès
-    const closeButtons = document.querySelectorAll(".close");
-    closeButtons.forEach(btn => {
-        btn.addEventListener("click", closeSuccessMessage);
-    });
+// Ajout d'un gestionnaire d'événements aux boutons de fermeture des messages de succès
+const closeButtons = document.querySelectorAll(".close");
+closeButtons.forEach(btn => {
+    btn.addEventListener("click", closeSuccessMessage);
+});
 
-    // Ajout d'un gestionnaire d'événements aux liens de suppression de projet avec confirmation
-    const deleteLinks = document.querySelectorAll(".delete-project-link");
-    deleteLinks.forEach(link => {
-        link.addEventListener("click", handleDeleteProject);
-    });
+// Ajout d'un gestionnaire d'événements aux liens de suppression de projet avec confirmation
+const deleteLinks = document.querySelectorAll(".delete-project-link");
+deleteLinks.forEach(link => {
+    link.addEventListener("click", handleDeleteProject);
+});
 
-    // Fermer automatiquement le message de succès s'il existe
-    autoCloseSuccessMessage();
+// Fermer automatiquement le message de succès s'il existe
+autoCloseSuccessMessage();
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -45,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (successMessage) {
             successMessage.style.display = 'none';
         }
-    }, 8000); 
+    }, 5000);
 });
 
 
@@ -92,9 +99,9 @@ function updateArchivedStateUI(linkElement, archived) {
     const parentRow = linkElement.closest("tr");
     const archivedCell = parentRow.querySelector(".archived-cell");
     if (archived) {
-        archivedCell.innerHTML = '<span class="text-gray-700 font-bold">Oui</span>'; // Texte en gris foncé pour "Oui"
+        archivedCell.innerHTML = '<span class="text-red-500 font-bold">Oui</span>';
     } else {
-        archivedCell.innerHTML = '<span class="text-blue-500 font-bold">Non</span>'; // Texte en bleu pour "Non"
+        archivedCell.innerHTML = '<span class="text-green-400 font-bold">Non</span>';
     }
 }
 

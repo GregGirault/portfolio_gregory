@@ -16,12 +16,11 @@ if ($_GET && isset($_GET['id'])) {
         // Suppression de l'image correspondante
         $imagePath = 'image/' . $project['image'];
         if (file_exists($imagePath)) {
-            unlink($imagePath); // Assurez-vous que ceci pointe vers un fichier et non un dossier
+            unlink($imagePath); 
         } else {
             $_SESSION["errorMsg"] = "Fichier image non trouvé.";
         }
 
-        // Correction du nom de la table dans la requête de suppression
         $sql = "DELETE FROM `projets` WHERE `ID` = :id";
         $query = $db->prepare($sql);
         $query->bindValue(":id", $id, PDO::PARAM_INT);
