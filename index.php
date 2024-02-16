@@ -2,7 +2,7 @@
 session_start();
 require_once("connect.php");
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 // Vérification si l'utilisateur est connecté et est un admin
 if (!isset($_SESSION["username"]) || $_SESSION["role"] !== 'Admin') {
@@ -56,13 +56,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Exécution de la requête
-        if ($query->execute()) {
-            $_SESSION["toast_message"] = isset($id) ? "Le projet a été mis à jour avec succès." : "Le projet a été ajouté avec succès.";
-        } else {
-            $_SESSION["toast_message"] = "Une erreur est survenue lors de l'opération sur le projet.";
-        }
-        header("Location: index.php");
+    if ($query->execute()) {
+        $_SESSION["toast_modify"] = isset($id) ? "Le projet a été mis à jour avec succès." : "Le projet a été ajouté avec succès.";
+        header("Location: index.php"); // Assurez-vous que cette redirection se fait après la définition du message
         exit();
+    } else {
+        $_SESSION["toast_message"] = "Une erreur est survenue lors de l'opération
+sur le projet.";
+header("Location: index.php");
+exit();
+}
+
     } else {
         $_SESSION["toast_message"] = "Veuillez remplir tous les champs requis.";
         header("Location: ajouter.php");
@@ -137,12 +141,13 @@ require_once "close.php";
                 </div>
             <?php endif; ?>
 
-            <?php if (isset($_SESSION["toast_message"])): ?>
-                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
-                    <p><?= $_SESSION["toast_message"] ?></p>
+            <?php if (isset($_SESSION["toast_modify"])): ?>
+                <div class="bg-green-500 text-white font-bold rounded px-4 py-3 mb-4 relative" role="alert">
+                    <p><?= $_SESSION["toast_modify"] ?></p>
+                    <button class="close absolute top-0 right-0 transform hover:rotate-180 transition-transform duration-500 mt-2 mr-2">&times;</button>
                 </div>
                 <?php
-                unset($_SESSION["toast_message"]);
+                unset($_SESSION["toast_modify"]);
                 unset($_SESSION["toast_type"]); 
                 ?>
             <?php endif; ?>

@@ -77,9 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
         $query->bindValue(":description", $description, PDO::PARAM_STR);
         $query->bindValue(":image", $image, PDO::PARAM_STR);
         $query->bindValue(":categorie_id", $categorie_id, PDO::PARAM_INT);
+        $result = $query->execute();
 
-        if ($query->execute()) {
-            $_SESSION["toast_message"] = "Projet $id modifié avec succès.";
+        if ($result) {
+            $_SESSION["toast_modify"] = "Projet $titre modifié avec succès.";
         } else {
             $_SESSION["toast_error"] = "Erreur lors de la mise à jour du projet.";
         }

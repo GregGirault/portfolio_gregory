@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function autoCloseSuccessMessage() {
     setTimeout(() => {
         closeSuccessMessage();
-    }, 5000); // Fermer après 5 secondes
+    }, 5000); 
 }
 
 // Fonction pour gérer la suppression du projet avec confirmation
