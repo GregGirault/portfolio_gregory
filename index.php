@@ -56,16 +56,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Exécution de la requête
-    if ($query->execute()) {
-        $_SESSION["toast_modify"] = isset($id) ? "Le projet a été mis à jour avec succès." : "Le projet a été ajouté avec succès.";
-        header("Location: index.php"); // Assurez-vous que cette redirection se fait après la définition du message
-        exit();
-    } else {
-        $_SESSION["toast_message"] = "Une erreur est survenue lors de l'opération
+        if ($query->execute()) {
+            $_SESSION["toast_modify"] = isset($id) ? "Le projet a été mis à jour avec succès." : "Le projet a été ajouté avec succès.";
+            header("Location: index.php"); // Assurez-vous que cette redirection se fait après la définition du message
+            exit();
+        } else {
+            $_SESSION["toast_message"] = "Une erreur est survenue lors de l'opération
 sur le projet.";
-header("Location: index.php");
-exit();
-}
+            header("Location: index.php");
+            exit();
+        }
 
     } else {
         $_SESSION["toast_message"] = "Veuillez remplir tous les champs requis.";
@@ -127,7 +127,7 @@ require_once "close.php";
 
             <?php if (isset($_SESSION["success_add_message"])): ?>
                 <div class="bg-green-500 text-white font-bold rounded px-4 py-3 mb-4 relative" role="alert">
-                    <button class="close absolute top-0 right-0 transform hover:rotate-180 transition-transform duration-500 mt-2 mr-2">&times;</button>
+                    <button class="close absolute top-0 right-0 transition-transform duration-500 mt-2 mr-2">&times;</button>
                     <?= $_SESSION["success_add_message"]; ?>
                     <?php unset($_SESSION["success_add_message"]); ?>
                 </div>
@@ -135,7 +135,7 @@ require_once "close.php";
 
             <?php if (isset($_SESSION["success_delete_message"])): ?>
                 <div class="bg-green-500 text-white font-bold rounded px-4 py-3 mb-4 relative" role="alert">
-                    <button class="close absolute top-0 right-0 transform hover:rotate-180 transition-transform duration-500 mt-2 mr-2">&times;</button>
+                    <button class="close absolute top-0 right-0 transition-transform duration-500 mt-2 mr-2">&times;</button>
                     <?= $_SESSION["success_delete_message"]; ?>
                     <?php unset($_SESSION["success_delete_message"]); ?>
                 </div>
@@ -144,16 +144,16 @@ require_once "close.php";
             <?php if (isset($_SESSION["toast_modify"])): ?>
                 <div class="bg-green-500 text-white font-bold rounded px-4 py-3 mb-4 relative" role="alert">
                     <p><?= $_SESSION["toast_modify"] ?></p>
-                    <button class="close absolute top-0 right-0 transform hover:rotate-180 transition-transform duration-500 mt-2 mr-2">&times;</button>
+                    <button class="close absolute top-0 right-0 transition-transform duration-500 mt-2 mr-2">&times;</button>
                 </div>
                 <?php
                 unset($_SESSION["toast_modify"]);
-                unset($_SESSION["toast_type"]); 
+                unset($_SESSION["toast_type"]);
                 ?>
             <?php endif; ?>
 
 
-            <h1 class="text-2xl font-semibold mb-4 text-center">Historique des ajouts</h1>
+            <h1 class="text-2xl font-semibold mb-4 text-center text-gray-700">Historique des ajouts</h1>
             <table class="min-w-full leading-normal">
                 <thead>
                     <tr>
@@ -171,19 +171,19 @@ require_once "close.php";
                 <tbody>
                     <?php foreach ($projects as $project): ?>
                         <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?= htmlspecialchars($project['titre']) ?></td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?= htmlspecialchars($project['description']) ?></td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm font-semibold text-gray-600"><?= htmlspecialchars($project['titre']) ?></td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm font-semibold text-gray-600"><?= htmlspecialchars($project['description']) ?></td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center font-semibold">
                                 <img src="image/<?= htmlspecialchars($project['image']) ?>" alt="Image du projet" class="w-20 h-20 object-cover mx-auto">
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm archived-cell">
-                                <?= $project['archiver'] ? '<span class="text-green-500">Oui</span>' : '<span class="text-orange-500">Non</span>' ?>
+                                <?= $project['archiver'] ? '<span class="text-orange-500 font-bold">Oui</span>' : '<span class="text-green-500 font-bold">Non</span>' ?>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?= htmlspecialchars($project['date_creation']) ?></td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?= htmlspecialchars($project['date_modification']) ?></td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><?= htmlspecialchars($project['categorie_nom']) ?></td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm font-semibold text-gray-600"><?= htmlspecialchars($project['date_creation']) ?></td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm font-semibold text-gray-600"><?= htmlspecialchars($project['date_modification']) ?></td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm font-semibold text-gray-600"><?= htmlspecialchars($project['categorie_nom']) ?></td>
                             <td
-                                class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+                                class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center font-semibold text-gray-600">
                                 <!-- Lien de modification -->
                                 <a href="modifier.php?id=<?= $project['ID'] ?>" class="text-amber-500 hover:text-amber-700 font-bold block mb-2">
                                     <i class="fas fa-edit"></i>
@@ -209,13 +209,13 @@ require_once "close.php";
         </div>
         <!-- Pagination -->
         <div class="flex justify-center items-center py-4 space-x-2">
-            <a href="./index.php?page=<?= max(1, $currentPage - 1); ?>" class="px-4 py-2 text-blue-500 hover:text-blue-700">&laquo; Précédente</a>
+            <a href="./index.php?page=<?= max(1, $currentPage - 1); ?>" class="px-4 py-2 text-blue-500 hover:text-blue-700 font-semibold">&laquo; Précédente</a>
             <div class="flex space-x-1">
                 <?php for ($page = 1; $page <= $pages; $page++): ?>
                     <a href="./index.php?page=<?= $page; ?>" class="px-4 py-2 <?= ($currentPage == $page) ? 'text-blue-600' : 'text-blue-500 hover:text-blue-700'; ?>"><?= $page; ?></a>
                 <?php endfor; ?>
             </div>
-            <a href="./index.php?page=<?= min($pages, $currentPage + 1); ?>" class="px-4 py-2 text-blue-500 hover:text-blue-700">Suivante &raquo;</a>
+            <a href="./index.php?page=<?= min($pages, $currentPage + 1); ?>" class="px-4 py-2 text-blue-500 hover:text-blue-700 font-semibold">Suivante &raquo;</a>
         </div>
 
         <div class="flex justify-center mt-8">

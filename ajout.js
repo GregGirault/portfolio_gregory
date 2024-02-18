@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fonction pour fermer le message de succès et ajouter une animation de rotation
     function closeSuccessMessage(event) {
         const closeButton = event.target;
-        closeButton.classList.add("rotate-180"); // Ajoute une rotation de 180 degrés
+        closeButton.classList.add("rotate-180"); 
 
         // Attendre la fin de l'animation avant de cacher le message
         closeButton.addEventListener("transitionend", function () {
@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Fonction pour fermer automatiquement le message de succès
 function autoCloseSuccessMessage() {
     setTimeout(() => {
         closeSuccessMessage();
@@ -63,11 +62,16 @@ document.addEventListener("DOMContentLoaded", function () {
     archiverLinks.forEach(link => {
         link.addEventListener("click", function (event) {
             event.preventDefault();
-            const projectId = this.dataset.projectId;
-            toggleProjectArchivedState(projectId, this);
+            const projectId = this.dataset.projectId; // S'assurer que cet ID est bien récupéré
+            if (projectId) { // Vérifier que projectId est défini
+                toggleProjectArchivedState(projectId, this);
+            } else {
+                console.error('Erreur: Aucun ID de projet fourni.'); // Ajouter une gestion d'erreur
+            }
         });
     });
 });
+
 
 function toggleProjectArchivedState(projectId, linkElement) {
     const url = `archiver.php?id=${projectId}&ajax=1`;
@@ -99,9 +103,9 @@ function updateArchivedStateUI(linkElement, archived) {
     const parentRow = linkElement.closest("tr");
     const archivedCell = parentRow.querySelector(".archived-cell");
     if (archived) {
-        archivedCell.innerHTML = '<span class="text-red-500 font-bold">Oui</span>';
+        archivedCell.innerHTML = '<span class="text-orange-500 font-bold">Oui</span>';
     } else {
-        archivedCell.innerHTML = '<span class="text-green-400 font-bold">Non</span>';
+        archivedCell.innerHTML = '<span class="text-green-500 font-bold">Non</span>';
     }
 }
 

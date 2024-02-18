@@ -82,7 +82,7 @@ require_once("close.php");
                     <div class="flex flex-wrap">
                         <?php foreach ($categories as $categorie): ?>
                             <label class="inline-flex items-center mr-6">
-                                <input type="radio" class="form-radio h-5 w-5 text-blue-600" name="categorie_id" value="<?= $categorie['ID']; ?>">
+                                <input type="radio" class="form-radio h-5 w-5  text-sky-500" name="categorie_id" value="<?= $categorie['ID']; ?>">
                                 <span class="ml-2 text-gray-700"><?= $categorie['nom']; ?></span>
                             </label>
                         <?php endforeach; ?>
