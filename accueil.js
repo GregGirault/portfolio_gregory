@@ -52,3 +52,42 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+        link.style.position = 'relative';
+        link.style.overflow = 'hidden';
+
+        link.addEventListener('mouseenter', () => {
+            const underline = document.createElement('span');
+            underline.classList.add('underline');
+            underline.style.position = 'absolute';
+            underline.style.bottom = '0';
+            underline.style.left = '0';
+            underline.style.width = '100%';
+            underline.style.height = '2px';
+            underline.style.backgroundColor = '#4A5568';
+            underline.style.transform = 'scaleX(0)';
+            underline.style.transition = 'transform 0.3s ease-in-out';
+            underline.style.transformOrigin = 'bottom left';
+
+            link.appendChild(underline);
+
+            requestAnimationFrame(() => {
+                underline.style.transform = 'scaleX(1)';
+            });
+        });
+
+        link.addEventListener('mouseleave', () => {
+            const underline = link.querySelector('.underline');
+            if (underline) {
+                underline.style.transform = 'scaleX(0)';
+                underline.addEventListener('transitionend', () => {
+                    underline.remove();
+                }, { once: true });
+            }
+        });
+    });
+});
