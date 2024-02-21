@@ -15,22 +15,26 @@
 
 <body class="bg-gray-50">
 
-    <header class="bg-white shadow-lg py-4" data-aos="fade-down">
-        <nav class="container mx-auto flex justify-between items-center px-6">
-            <a href="#" class="text-xl font-bold text-gray-800">Grégory Girault</a>
-            <div class="space-x-4 hidden md:flex">
+    <header class="bg-white shadow-xl py-6" data-aos="fade-down">
+        <nav class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
+            <a href="#"
+                class="text-2xl font-semibold text-gray-900 hover:text-indigo-600 transition-colors duration-300">Grégory
+                Girault</a>
+            <div id="mobile-menu" class="space-x-5 hidden md:flex">
+
                 <a href="#home"
-                    class="text-gray-800 text-sm font-medium transition-colors duration-300 hover:text-indigo-500">Accueil</a>
+                    class="text-gray-900 text-base font-medium transition-colors duration-300 hover:text-indigo-600">Accueil</a>
                 <a href="#about"
-                    class="text-gray-800 text-sm font-medium transition-colors duration-300 hover:text-indigo-500">À
+                    class="text-gray-900 text-base font-medium transition-colors duration-300 hover:text-indigo-600">À
                     propos</a>
                 <a href="#skills"
-                    class="text-gray-800 text-sm font-medium transition-colors duration-300 hover:text-indigo-500">Compétences</a>
+                    class="text-gray-900 text-base font-medium transition-colors duration-300 hover:text-indigo-600">Compétences</a>
                 <a href="#contact"
-                    class="text-gray-800 text-sm font-medium transition-colors duration-300 hover:text-indigo-500">Contact</a>
+                    class="text-gray-900 text-base font-medium transition-colors duration-300 hover:text-indigo-600">Contact</a>
             </div>
-            <button id="menu-toggle" class="md:hidden text-gray-800">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button id="menu-toggle"
+                class="md:hidden text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7">
                     </path>
                 </svg>
@@ -38,42 +42,45 @@
         </nav>
     </header>
 
-    <section id="home" class="flex justify-center items-center h-screen bg-gray-100" data-aos="fade-up">
-        <div class="text-center">
+    <section id="home" class="flex justify-center items-center h-screen bg-gray-50" data-aos="fade-up">
+        <div class="text-center p-4 md:p-8">
             <img src="/portfolio_gregory/image/Greg DALL-E.webp" alt="Grégory Girault"
-                class="mx-auto rounded-full w-32 h-32 object-cover transition-transform duration-500 ease-in-out hover:scale-110">
-            <h1 class="text-5xl font-bold text-gray-800 mt-4">Grégory Girault</h1>
-            <p class="mt-4 text-lg text-gray-600">Développeur Web Fullstack | Passionné par Symfony</p>
-            <div class="mt-8 space-x-4">
+                class="mx-auto rounded-full w-40 h-40 md:w-48 md:h-48 object-cover shadow-xl transition-transform duration-500 ease-in-out hover:scale-110"
+                aria-label="Grégory Girault">
+            <h1 class="text-6xl font-bold text-gray-900 mt-5">Grégory Girault</h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-700">Développeur Web Fullstack | Passionné par Symfony</p>
+            <div class="mt-10 space-x-4">
                 <a href="#projects"
-                    class="bg-indigo-500 text-white font-bold py-2 px-4 rounded hover:bg-indigo-600 transition duration-300 ease-in-out">Voir
-                    mes projets</a>
+                    class="inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition duration-300 ease-in-out shadow-md"
+                    aria-label="Voir mes projets">Voir mes projets</a>
                 <a href="#contact"
-                    class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-300 ease-in-out">Contactez-moi</a>
+                    class="inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out shadow-md"
+                    aria-label="Contactez-moi">Contactez-moi</a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="bg-gray-100 py-12" data-aos="fade-up">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-semibold text-gray-900">À propos de moi</h2>
-                <div class="mt-4 text-lg leading-relaxed text-gray-600 mx-auto lg:w-2/3">
+    <section id="about" class="bg-white py-16" data-aos="fade-up">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-800">À propos de moi</h2>
+                <p class="mt-6 text-xl text-gray-700 mx-auto leading-relaxed max-w-4xl">
                     Passionné par l'informatique, les nouvelles technologies et naviguant sur le web, j'ai exploré
                     diverses carrières avant de découvrir ma passion pour le développement web. Mon parcours varié, de
                     la cuisine à l'électricité, en passant par l'armée et l'horticulture, jusqu'à mon rôle chez
                     Textilot, m'a finalement conduit à embrasser ma véritable vocation en tant que développeur web.
-                    Aujourd'hui, je suis spécialisé en <strong>Symfony</strong> et <strong>Tailwind</strong>, avec une
-                    aspiration à ouvrir ma propre entreprise de développement web.
-                </div>
+                    Aujourd'hui, je suis spécialisé en <span class="text-indigo-600 font-semibold">Symfony</span> et
+                    <span class="text-green-600 font-semibold">Tailwind</span>, avec une aspiration à ouvrir ma propre
+                    entreprise de développement web.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="text-gray-700 body-font">
+    <section id="projects" class="text-gray-700 body-font bg-gray-50">
         <div class="container px-5 py-24 mx-auto" data-aos="zoom-in">
             <div class="text-center mb-20">
-                <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl">Projets</h1>
+                <h1 class="sm:text-5xl text-4xl font-extrabold text-gray-900">Projets</h1>
                 <p class="text-lg mt-4 leading-relaxed xl:w-2/3 mx-auto text-gray-600">Découvrez une sélection de mes
                     projets, illustrant ma capacité à concevoir et développer des solutions web innovantes.</p>
             </div>
@@ -81,18 +88,18 @@
                 <!-- Projet 1 : RSE -->
                 <div class="p-4 md:w-1/2" data-aos="fade-right" data-aos-delay="100">
                     <div
-                        class="h-full bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-500 ease-in-out">
+                        class="h-full bg-white rounded-lg overflow-hidden border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-in-out">
                         <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                            src="/portfolio_gregory/image/project_rse.jpg" alt="Réseau Social d'Entreprise"
+                            src="/portfolio_gregory/image/tableau_rse.jpg" alt="Réseau Social d'Entreprise"
                             loading="lazy">
                         <div class="p-6">
-                            <h2 class="title-font text-xl font-semibold text-gray-900 mb-3">Réseau Social d'Entreprise
+                            <h2 class="title-font text-2xl font-semibold text-gray-900 mb-3">Réseau Social d'Entreprise
                                 (RSE)</h2>
                             <p class="leading-relaxed mb-3 text-gray-600">Favorisant la communication interne et le
                                 partage entre collaborateurs, ce projet utilise Symfony et LESS pour une expérience
                                 utilisateur optimisée.</p>
-                            <a href="page_detail_rse.html" class="text-indigo-500 inline-flex items-center group">
-                                En savoir plus
+                            <a href="en_savoir_plus_rse.php" class="text-indigo-500 inline-flex items-center group">En
+                                savoir plus
                                 <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform duration-200"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -107,17 +114,16 @@
                 <!-- Projet 2 : ToDoList -->
                 <div class="p-4 md:w-1/2" data-aos="fade-left" data-aos-delay="200">
                     <div
-                        class="h-full bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-500 ease-in-out">
-                        <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                            src="/portfolio_gregory/image/project_todolist.jpg" alt="ToDoList en Symfony"
-                            loading="lazy">
+                        class="h-full bg-white rounded-lg overflow-hidden border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-in-out">
+                        <img class="lg:h-48 md:h-36 w-full object-cover object-top"
+                            src="/portfolio_gregory/image/to_do_list.png" alt="ToDoList en Symfony" loading="lazy">
                         <div class="p-6">
-                            <h2 class="title-font text-xl font-semibold text-gray-900 mb-3">ToDoList en Symfony</h2>
+                            <h2 class="title-font text-2xl font-semibold text-gray-900 mb-3">ToDoList en Symfony</h2>
                             <p class="leading-relaxed mb-3 text-gray-600">Conçue pour améliorer la productivité
                                 quotidienne, cette ToDoList utilise Symfony et Bootstrap pour une interface élégante et
                                 fonctionnelle.</p>
-                            <a href="page_detail_todolist.html" class="text-indigo-500 inline-flex items-center group">
-                                En savoir plus
+                            <a href="en_savoir_plus_todolist.php"
+                                class="text-indigo-500 inline-flex items-center group">En savoir plus
                                 <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform duration-200"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -128,116 +134,126 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-
-
-    <!-- Compétences -->
-    <section id="skills" class="bg-white py-20" data-aos="fade-up">
+    <section id="skills" class="bg-white py-24" data-aos="fade-up">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h1 class="text-4xl font-semibold text-gray-900">Compétences</h1>
-                <p class="text-lg leading-relaxed xl:w-2/3 mx-auto text-gray-600">Voici les technologies et les outils
-                    que j'utilise pour créer des solutions web efficaces et modernes.</p>
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold text-gray-900">Compétences</h1>
+                <p class="text-xl mt-4 leading-relaxed xl:w-3/4 mx-auto text-gray-700">Voici les technologies et les
+                    outils que j'utilise pour créer des solutions web efficaces et modernes.</p>
             </div>
             <div class="flex flex-wrap justify-center items-center">
                 <!-- PHP -->
                 <div class="p-4 md:w-1/4 lg:w-1/5" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-gray-100 rounded-lg p-6 flex flex-col items-center">
-                        <img class="mb-4 w-20 h-20" src="/portfolio_gregory/image/php.svg" alt="PHP">
-                        <h2 class="title-font font-medium text-lg text-gray-900">PHP</h2>
-                        <p class="text-base text-gray-600">Serveur & Backend</p>
+                    <div
+                        class="bg-gray-50 rounded-lg p-8 flex flex-col items-center shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-in-out">
+                        <img class="mb-6 w-24 h-24" src="/portfolio_gregory/image/php.svg" alt="PHP">
+                        <h2 class="title-font font-semibold text-xl text-gray-900">PHP</h2>
+                        <p class="text-lg text-gray-700">Serveur & Backend</p>
                     </div>
                 </div>
                 <!-- Symfony -->
                 <div class="p-4 md:w-1/4 lg:w-1/5" data-aos="fade-up" data-aos-delay="150">
-                    <div class="bg-gray-100 rounded-lg p-6 flex flex-col items-center">
-                        <img class="mb-4 w-20 h-20" src="/portfolio_gregory/image/symfony.svg" alt="Symfony">
-                        <h2 class="title-font font-medium text-lg text-gray-900">Symfony</h2>
-                        <p class="text-base text-gray-600">Framework PHP</p>
+                    <div
+                        class="bg-gray-50 rounded-lg p-8 flex flex-col items-center shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-in-out">
+                        <img class="mb-6 w-24 h-24" src="/portfolio_gregory/image/symfony.svg" alt="Symfony">
+                        <h2 class="title-font font-semibold text-xl text-gray-900">Symfony</h2>
+                        <p class="text-lg text-gray-700">Framework PHP</p>
                     </div>
                 </div>
                 <!-- CSS -->
                 <div class="p-4 md:w-1/4 lg:w-1/5" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-gray-100 rounded-lg p-6 flex flex-col items-center">
-                        <img class="mb-4 w-20 h-20" src="/portfolio_gregory/image/css.svg" alt="CSS">
-                        <h2 class="title-font font-medium text-lg text-gray-900">CSS</h2>
-                        <p class="text-base text-gray-600">Styling & Layouts</p>
+                    <div
+                        class="bg-gray-50 rounded-lg p-8 flex flex-col items-center shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-in-out">
+                        <img class="mb-6 w-24 h-24" src="/portfolio_gregory/image/css.svg" alt="CSS">
+                        <h2 class="title-font font-semibold text-xl text-gray-900">CSS</h2>
+                        <p class="text-lg text-gray-700">Styling & Layouts</p>
                     </div>
                 </div>
                 <!-- Tailwind CSS -->
                 <div class="p-4 md:w-1/4 lg:w-1/5" data-aos="fade-up" data-aos-delay="250">
-                    <div class="bg-gray-100 rounded-lg p-6 flex flex-col items-center">
-                        <img class="mb-4 w-20 h-20" src="/portfolio_gregory/image/tailwind-css-2.svg"
+                    <div
+                        class="bg-gray-50 rounded-lg p-8 flex flex-col items-center shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-in-out">
+                        <img class="mb-6 w-24 h-24" src="/portfolio_gregory/image/tailwind-css-2.svg"
                             alt="Tailwind CSS">
-                        <h2 class="title-font font-medium text-lg text-gray-900">Tailwind CSS</h2>
-                        <p class="text-base text-gray-600">Design Utility-first</p>
+                        <h2 class="title-font font-semibold text-xl text-gray-900">Tailwind CSS</h2>
+                        <p class="text-lg text-gray-700">Design Utility-first</p>
                     </div>
                 </div>
                 <!-- JavaScript -->
                 <div class="p-4 md:w-1/4 lg:w-1/5" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-gray-100 rounded-lg p-6 flex flex-col items-center">
-                        <img class="mb-4 w-20 h-20" src="/portfolio_gregory/image/logo-javascript.svg" alt="JavaScript">
-                        <h2 class="title-font font-medium text-lg text-gray-900">JavaScript</h2>
-                        <p class="text-base text-gray-600">Interaction & Frontend</p>
+                    <div
+                        class="bg-gray-50 rounded-lg p-8 flex flex-col items-center shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-in-out">
+                        <img class="mb-6 w-24 h-24" src="/portfolio_gregory/image/logo-javascript.svg" alt="JavaScript">
+                        <h2 class="title-font font-semibold text-xl text-gray-900">JavaScript</h2>
+                        <p class="text-lg text-gray-700">Interaction & Frontend</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <section id="contact" class="text-gray-700 body-font relative" data-aos="fade-up">
+    <section id="contact" class="text-gray-700 body-font relative bg-gray-50" data-aos="fade-up">
         <div class="container px-5 py-24 mx-auto">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-semibold title-font text-gray-900">Contactez-moi</h2>
-                <p class="text-lg leading-relaxed mx-auto lg:w-2/3">Vous avez un projet en tête ou souhaitez discuter
+                <h2 class="text-4xl font-bold title-font text-gray-900">Contactez-moi</h2>
+                <p class="text-xl leading-relaxed mx-auto lg:w-2/3">Vous avez un projet en tête ou souhaitez discuter
                     d'une opportunité ? N'hésitez pas à me contacter.</p>
             </div>
             <div class="lg:w-1/2 md:w-2/3 mx-auto">
                 <form id="contact-form" action="traitement_contact.php" method="POST" class="flex flex-wrap -m-2">
                     <div class="p-2 w-1/2">
                         <input
-                            class="w-full bg-white rounded border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-base px-4 py-2"
+                            class="w-full bg-white rounded border border-gray-400 focus:ring-2 focus:ring-indigo-600 text-base px-4 py-2"
                             placeholder="Nom" type="text" name="name" required>
                     </div>
                     <div class="p-2 w-1/2">
                         <input
-                            class="w-full bg-white rounded border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-base px-4 py-2"
+                            class="w-full bg-white rounded border border-gray-400 focus:ring-2 focus:ring-indigo-600 text-base px-4 py-2"
                             placeholder="Email" type="email" name="email" required>
                     </div>
                     <div class="p-2 w-full">
                         <textarea
-                            class="w-full bg-white rounded border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-base px-4 py-2 resize-none"
+                            class="w-full bg-white rounded border border-gray-400 focus:ring-2 focus:ring-indigo-600 text-base px-4 py-2 resize-none"
                             placeholder="Message" name="message" required></textarea>
                     </div>
                     <div class="p-2 w-full">
                         <button
-                            class="flex mx-auto text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 border-0 py-2 px-8 rounded text-lg transition duration-300 ease-in-out"
+                            class="flex mx-auto text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50 border-0 py-2 px-8 rounded text-lg transition duration-300 ease-in-out"
                             type="submit">Envoyer</button>
                     </div>
                 </form>
             </div>
-            <div class="flex justify-center mt-6">
-                <a href="https://github.com/GregGirault" target="_blank"
-                    class="text-gray-500 hover:text-gray-700 transition duration-300 ease-in-out text-4xl mx-4">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/grégory-girault-420270263" target="_blank"
-                    class="text-gray-500 hover:text-blue-500 transition duration-300 ease-in-out text-4xl mx-4">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </div>
+            <!-- <div class="flex justify-center mt-6">
+            <a href="https://github.com/GregGirault" target="_blank" class="text-gray-500 hover:text-gray-700 transition duration-300 ease-in-out text-4xl mx-4">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/grégory-girault-420270263" target="_blank" class="text-gray-500 hover:text-blue-600 transition duration-300 ease-in-out text-4xl mx-4">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div> -->
         </div>
     </section>
 
-
-
-    <footer class="bg-white text-center p-4 text-gray-600">
-        © 2024 Grégory Girault - Tous droits réservés.
+    <footer class="bg-gray-50 text-center p-6 text-gray-700">
+        <div class="container mx-auto">
+            <div class="mb-3">
+                © 2024 Grégory Girault - Tous droits réservés.
+            </div>
+            <div class="flex justify-center mt-4">
+                <a href="https://github.com/GregGirault" target="_blank"
+                    class="mx-2 text-gray-600 hover:text-gray-900 transition duration-300 ease-in-out">
+                    <i class="fab fa-github text-4xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/grégory-girault-420270263" target="_blank"
+                    class="mx-2 text-gray-600 hover:text-blue-600 transition duration-300 ease-in-out">
+                    <i class="fab fa-linkedin text-4xl"></i>
+                </a>
+            </div>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
