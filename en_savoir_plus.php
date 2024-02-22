@@ -251,7 +251,7 @@ $footerContent = $contentManager->getSingleContentBySection('footer');
     <script>
         AOS.init();
     </script>
-    <script src="esp_rse.js"></script>
+    <script src="esp.js"></script>
 
 </body>
 

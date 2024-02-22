@@ -118,7 +118,7 @@ $projets = $stmt->fetchAll();
                                 <p class="leading-relaxed mb-3 text-gray-600">
                                     <?= htmlspecialchars($projet['description']) ?>
                                 </p>
-                                <a href="en_savoir_plus_rse.php?id=<?= $projet['ID'] ?>"
+                                <a href="en_savoir_plus.php?id=<?= $projet['ID'] ?>"
                                     class="text-indigo-500 inline-flex items-center group">En savoir plus
                                     <svg class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform duration-200"
                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"
