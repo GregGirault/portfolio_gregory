@@ -30,6 +30,7 @@ class ContentManager
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 }
 
 $contentManager = new ContentManager($db);
@@ -230,7 +231,7 @@ $footerContent = $contentManager->getSingleContentBySection('footer');
     </section>
     <footer class="text-gray-600 body-font bg-indigo-600">
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row items-center">
-            <p class="text-gray-100 text-sm text-center sm:text-left">© 2024 Projet RSE - David Kenos —
+            <p class="text-gray-100 text-sm text-center sm:text-left"><?= htmlspecialchars($footerContent['texte']) ?>
                 <a href="mentions-legales.php" class="text-gray-100 ml-1" rel="noopener noreferrer"
                     target="_blank">Mentions Légales</a>
             </p>
