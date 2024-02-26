@@ -146,6 +146,8 @@ $footerContent = $contentManager->getSingleContentBySection('footer');
 
 
     <!-- Section des Fonctionnalités -->
+     <section id="features" class="bg-gray-100 text-gray-800 body-font" data-aos="zoom-in" data-aos-delay="150"
+        data-aos-duration="1000">
     <div class="flex flex-wrap justify-center py-12 bg-white">
         <?php foreach ($featuresContent as $feature): ?>
             <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8" data-aos="zoom-in" data-aos-delay="200"

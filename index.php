@@ -2,13 +2,23 @@
 session_start();
 require_once("connect.php");
 
-// var_dump($_SESSION);
+$projetExistant = null; // Variable pour stocker les données du projet existant
+if (isset($_GET['projet_id']) && !empty($_GET['projet_id'])) {
+    $projetId = (int) $_GET['projet_id'];
+    $stmt = $db->prepare("SELECT * FROM projets WHERE ID = :projetId");
+    $stmt->bindParam(':projetId', $projetId, PDO::PARAM_INT);
+    $stmt->execute();
+    $projetExistant = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 
 // Vérification si l'utilisateur est connecté et est un admin
 if (!isset($_SESSION["username"]) || $_SESSION["role"] !== 'Admin') {
     header("Location: login.php");
     exit();
 }
+
+$contentData = []; // Initialisez cette variable avec les données récupérées
 
 // Traitement du formulaire d'ajout ou de mise à jour de projet
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -268,56 +278,23 @@ require_once "close.php";
         <a href="ajouter.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ajouter un
             projet</a>
         <a href="accueil.php"
-            class="bg-teal-400 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded ml-4">Portfolio</a>
+            class="bg-teal-400 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded ml-4">Portfolio
+        </a>
         <a href="deconnexion.php"
-            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4">Déconnexion</a>
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4">Déconnexion
+        </a>
+
+        <a href="modification_projets.php"
+            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-4">Modifier projets
+        </a>
+
     </div>
 
-    <!-- Début du formulaire de mise à jour du contenu -->
 
-    <!-- Formulaire de mise à jour du contenu avec sélection du projet -->
-    <div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
-            <h2 class="text-2xl font-semibold mb-5">Mise à jour du contenu</h2>
-            <form action="update_content.php" method="POST" enctype="multipart/form-data" class="space-y-4">
-                <div class="mb-4">
-                    <label for="projet_id" class="block text-gray-700 text-sm font-bold mb-2">Choisissez un projet :</label>
-                    <select name="projet_id" id="projet_id" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <?php
-                        require 'connect.php'; // Assurez-vous d'avoir une connexion valide à votre DB
-                        $stmt = $db->query("SELECT ID, titre FROM projets ORDER BY titre ASC");
-                        while ($projets = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            echo "<option value=\"{$projets['ID']}\">{$projets['titre']}</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-    
-            <div class="mb-4">
-                <label for="section_select" class="block text-gray-700 text-sm font-bold mb-2">Sélectionnez la section à
-                    mettre à jour :</label>
-                <select name="section" id="section_select"
-                    class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="header">Header</option>
-                    <option value="intro">Intro</option>
-                    <option value="about">À propos</option>
-                    <option value="features">Fonctionnalités</option>
-                    <option value="galerie">Galerie</option>
-                    <option value="lienURL">Lien URL</option>
-                    <option value="footer">Footer</option>
-                </select>
-            </div>
-    
-            <div id="dynamic_fields"></div>
-    
-            <button type="submit"
-                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Mettre à jour
-            </button>
-        </form>
-    </div>
-    </div>
-    
+
+
+
     <script src="ajout.js"></script>
-    </body>
-    
-    </html>
+</body>
+
+</html>

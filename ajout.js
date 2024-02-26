@@ -236,3 +236,5 @@ function loadInitialData() {
 // Appellez loadInitialData à la fin de l'événement DOMContentLoaded
 loadInitialData();
 });
+
+
