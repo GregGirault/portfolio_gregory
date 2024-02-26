@@ -2,14 +2,14 @@
 session_start();
 require_once("connect.php");
 
-$projetExistant = null; // Variable pour stocker les données du projet existant
-if (isset($_GET['projet_id']) && !empty($_GET['projet_id'])) {
-    $projetId = (int) $_GET['projet_id'];
-    $stmt = $db->prepare("SELECT * FROM projets WHERE ID = :projetId");
-    $stmt->bindParam(':projetId', $projetId, PDO::PARAM_INT);
-    $stmt->execute();
-    $projetExistant = $stmt->fetch(PDO::FETCH_ASSOC);
-}
+// $projetExistant = null; // Variable pour stocker les données du projet existant
+// if (isset($_GET['projet_id']) && !empty($_GET['projet_id'])) {
+//     $projetId = (int) $_GET['projet_id'];
+//     $stmt = $db->prepare("SELECT * FROM projets WHERE ID = :projetId");
+//     $stmt->bindParam(':projetId', $projetId, PDO::PARAM_INT);
+//     $stmt->execute();
+//     $projetExistant = $stmt->fetch(PDO::FETCH_ASSOC);
+// }
 
 
 // Vérification si l'utilisateur est connecté et est un admin
